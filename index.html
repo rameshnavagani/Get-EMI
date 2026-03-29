@@ -2,28 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <title>Get EMI Calculator | Loan EMI Calculator Online India</title>
 
-<meta name="description" content="Free EMI calculator to calculate loan EMI, interest, tenure and amortization schedule instantly. Get EMI calculator online for home loan, personal loan and car loan.">
-<meta name="keywords" content="emi calculator, get emi, loan emi calculator, emi calculator india, home loan emi calculator, personal loan emi, interest calculator">
-<meta name="author" content="Get EMI">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://rameshnavagani.github.io/Get-EMI/">
-
-<meta property="og:title" content="Get EMI Calculator">
-<meta property="og:description" content="Calculate EMI instantly with interest and amortization chart.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://rameshnavagani.github.io/Get-EMI/">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Get EMI Calculator">
-<meta name="twitter:description" content="Free EMI calculator for loans">
-
 <style>
-
 :root{
 --bg:#1A2849;
 --text:#ffffff;
@@ -49,7 +32,6 @@ background:var(--bg);
 color:var(--text);
 }
 
-/* FIXED MOBILE UI WITHOUT ZOOM */
 .container{
 max-width:420px;
 width:100%;
@@ -78,9 +60,7 @@ width:74px;
 height:30px;
 }
 
-.switch input{
-display:none;
-}
+.switch input{ display:none; }
 
 .slider{
 position:absolute;
@@ -122,10 +102,6 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:12px 0;
-}
-
-.row label{
-font-weight:bold;
 }
 
 .row input{
@@ -174,7 +150,6 @@ margin-top:15px;
 font-size:14px;
 line-height:22px;
 }
-
 </style>
 </head>
 
@@ -186,24 +161,24 @@ line-height:22px;
 <div class="title">Get EMI</div>
 
 <label class="switch">
-<input type="checkbox" onchange="toggleMode(this)">
+<input type="checkbox" onchange="toggleMode()">
 <span class="slider" id="modeText">Dark</span>
 </label>
 </div>
 
 <div class="row">
 <label>Loan Amount</label>
-<input type="number" id="loan" placeholder="Enter amount">
+<input type="number" id="loan">
 </div>
 
 <div class="row">
 <label>Rate %</label>
-<input type="number" id="rate" placeholder="Interest %">
+<input type="number" id="rate">
 </div>
 
 <div class="row">
 <label>Tenure (Months)</label>
-<input type="number" id="tenure" placeholder="Months">
+<input type="number" id="tenure">
 </div>
 
 <div class="btn-row">
@@ -230,50 +205,51 @@ Enter loan details and click Calculate EMI
 <script>
 
 function toggleMode(){
-document.body.classList.toggle("light")
-modeText.innerHTML=document.body.classList.contains("light")?"Light":"Dark"
+document.body.classList.toggle("light");
+document.getElementById("modeText").innerHTML =
+document.body.classList.contains("light") ? "Light" : "Dark";
 }
 
 function calculateEMI(){
 
-let loan=parseFloat(loan.value)||0;
-let rate=parseFloat(rate.value)||0;
-let tenure=parseFloat(tenure.value)||0;
+const loan = parseFloat(document.getElementById("loan").value);
+const rate = parseFloat(document.getElementById("rate").value);
+const tenure = parseFloat(document.getElementById("tenure").value);
 
 if(!loan || !rate || !tenure){
-emiResult.innerHTML="Please enter all values";
+document.getElementById("emiResult").innerHTML="Please enter all values";
 return;
 }
 
-let r=rate/12/100;
+const r = rate/12/100;
 
-let emi=loan*r*Math.pow(1+r,tenure)/(Math.pow(1+r,tenure)-1);
+const emi = loan*r*Math.pow(1+r,tenure)/(Math.pow(1+r,tenure)-1);
 
-let total=emi*tenure;
-let interest=total-loan;
+const total = emi*tenure;
+const interest = total-loan;
 
-let years=tenure/12;
-let flatRate=(interest/(loan*years))*100;
+const years = tenure/12;
+const flatRate = (interest/(loan*years))*100;
 
-emiResult.innerHTML="Loan EMI is ₹"+emi.toFixed(2);
-interest.innerHTML=interest.toFixed(2);
-total.innerHTML=total.toFixed(2);
-flatPa.innerHTML=flatRate.toFixed(2);
-pm.innerHTML=(r*100).toFixed(2);
+document.getElementById("emiResult").innerHTML="Loan EMI is ₹ "+emi.toFixed(2);
+document.getElementById("total").innerHTML=total.toFixed(2);
+document.getElementById("interest").innerHTML=interest.toFixed(2);
+document.getElementById("flatPa").innerHTML=flatRate.toFixed(2);
+document.getElementById("pm").innerHTML=(r*100).toFixed(2);
 }
 
 function showAmortization(){
 
-calculateEMI()
+calculateEMI();
 
-let loanVal=parseFloat(loan.value)||0;
-let rateVal=parseFloat(rate.value)||0;
-let tenureVal=parseFloat(tenure.value)||0;
+const loanVal=parseFloat(document.getElementById("loan").value);
+const rateVal=parseFloat(document.getElementById("rate").value);
+const tenureVal=parseFloat(document.getElementById("tenure").value);
 
 if(!loanVal || !rateVal || !tenureVal) return;
 
-let r=rateVal/12/100;
-let emi=loanVal*r*Math.pow(1+r,tenureVal)/(Math.pow(1+r,tenureVal)-1);
+const r=rateVal/12/100;
+const emi=loanVal*r*Math.pow(1+r,tenureVal)/(Math.pow(1+r,tenureVal)-1);
 
 let balance=loanVal;
 
@@ -307,20 +283,19 @@ html+=`<tr style="border-bottom:1px solid rgba(255,255,255,.18)">
 
 html+=`</tbody></table></div>`;
 
-amortization.innerHTML=html;
-amortization.scrollIntoView({behavior:"smooth"});
+document.getElementById("amortization").innerHTML=html;
 }
 
 function resetAll(){
-loan.value="";
-rate.value="";
-tenure.value="";
-emiResult.innerHTML="Enter loan details and click Calculate EMI";
-total.innerHTML="0";
-interest.innerHTML="0";
-flatPa.innerHTML="0";
-pm.innerHTML="0";
-amortization.innerHTML="";
+document.getElementById("loan").value="";
+document.getElementById("rate").value="";
+document.getElementById("tenure").value="";
+document.getElementById("emiResult").innerHTML="Enter loan details and click Calculate EMI";
+document.getElementById("total").innerHTML="0";
+document.getElementById("interest").innerHTML="0";
+document.getElementById("flatPa").innerHTML="0";
+document.getElementById("pm").innerHTML="0";
+document.getElementById("amortization").innerHTML="";
 }
 
 </script>
