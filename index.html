@@ -161,7 +161,7 @@ line-height:22px;
 <div class="title">Get EMI</div>
 
 <label class="switch">
-<input type="checkbox" onchange="toggleMode()">
+<input type="checkbox" id="modeToggle">
 <span class="slider" id="modeText">Dark</span>
 </label>
 </div>
@@ -182,9 +182,9 @@ line-height:22px;
 </div>
 
 <div class="btn-row">
-<button onclick="calculateEMI()">CALCULATE EMI</button>
-<button onclick="showAmortization()">AMORTIZATION CHART</button>
-<button onclick="resetAll()">RESET</button>
+<button id="calcBtn">CALCULATE EMI</button>
+<button id="chartBtn">AMORTIZATION CHART</button>
+<button id="resetBtn">RESET</button>
 </div>
 
 <div class="result" id="emiResult">
@@ -203,6 +203,15 @@ Enter loan details and click Calculate EMI
 </div>
 
 <script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+document.getElementById("calcBtn").addEventListener("click", calculateEMI);
+document.getElementById("chartBtn").addEventListener("click", showAmortization);
+document.getElementById("resetBtn").addEventListener("click", resetAll);
+document.getElementById("modeToggle").addEventListener("change", toggleMode);
+
+});
 
 function toggleMode(){
 document.body.classList.toggle("light");
@@ -253,49 +262,41 @@ const emi=loanVal*r*Math.pow(1+r,tenureVal)/(Math.pow(1+r,tenureVal)-1);
 
 let balance=loanVal;
 
-let html=`<div style="font-size:18px;font-weight:bold;margin-bottom:8px">
-Amortization Schedule</div>
-
-<div style="overflow:auto">
-<table style="width:100%;border-collapse:collapse;font-size:14px;text-align:right">
-<thead>
-<tr style="border-bottom:2px solid rgba(255,255,255,.35)">
-<th style="text-align:left;padding:8px">Month</th>
-<th style="padding:8px">EMI</th>
-<th style="padding:8px">Interest</th>
-<th style="padding:8px">Principal</th>
-<th style="padding:8px">Balance</th>
-</tr></thead><tbody>`;
+let html="<b>Amortization Schedule</b><br><br>";
 
 for(let i=1;i<=tenureVal;i++){
+
 let interestVal=balance*r;
 let principal=emi-interestVal;
 balance=balance-principal;
 
-html+=`<tr style="border-bottom:1px solid rgba(255,255,255,.18)">
-<td style="text-align:left;padding:8px">${i}</td>
-<td style="padding:8px">₹${emi.toFixed(0)}</td>
-<td style="padding:8px">₹${interestVal.toFixed(0)}</td>
-<td style="padding:8px">₹${principal.toFixed(0)}</td>
-<td style="padding:8px">₹${Math.abs(balance).toFixed(0)}</td>
-</tr>`;
+html+=`
+<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.2)">
+<span>${i}</span>
+<span>₹${emi.toFixed(0)}</span>
+<span>₹${interestVal.toFixed(0)}</span>
+<span>₹${principal.toFixed(0)}</span>
+</div>`;
 }
-
-html+=`</tbody></table></div>`;
 
 document.getElementById("amortization").innerHTML=html;
 }
 
 function resetAll(){
+
 document.getElementById("loan").value="";
 document.getElementById("rate").value="";
 document.getElementById("tenure").value="";
-document.getElementById("emiResult").innerHTML="Enter loan details and click Calculate EMI";
+
+document.getElementById("emiResult").innerHTML=
+"Enter loan details and click Calculate EMI";
+
 document.getElementById("total").innerHTML="0";
 document.getElementById("interest").innerHTML="0";
 document.getElementById("flatPa").innerHTML="0";
 document.getElementById("pm").innerHTML="0";
 document.getElementById("amortization").innerHTML="";
+
 }
 
 </script>
