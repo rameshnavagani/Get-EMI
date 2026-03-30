@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta name="google-site-verification" content="41q-fGa3V0AIcuARLMLExtk_qI2PrbtaT_oHS7y11Mw" />
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -9,34 +11,15 @@
 
 <meta name="description" content="Free EMI Calculator Online 2026 India. Calculate Loan EMI, Personal Loan EMI, Home Loan EMI, Car Loan EMI, Monthly Installment and Amortisation schedule instantly.">
 
-<meta name="keywords" content="EMI Calculator online, Loan EMI Calculator 2026, Personal Loan EMI Calculator, Home Loan EMI Calculator, Car Loan EMI Calculator, Monthly Installment Calculator, Amortisation calculator, loan emi calculator india, emi calculator free, bank emi calculator">
-
-<meta name="robots" content="index, follow">
-<meta name="author" content="Ramesh Navagani">
-<link rel="canonical" href="https://rameshnavagani.github.io/Get-EMI/">
-
-<meta property="og:title" content="EMI Calculator Online India 2026">
-<meta property="og:description" content="Calculate Loan EMI instantly with amortisation schedule.">
-<meta property="og:url" content="https://rameshnavagani.github.io/Get-EMI/">
-<meta property="og:type" content="website">
-
 <style>
-:root{
---bg:#1A2849;
---text:#ffffff;
---btn:#ffffff;
---btnText:#1A2849;
---inputBg:#1A2849;
---border:#ffffff;
-}
 
-body.light{
---bg:#ffffff;
---text:#1A2849;
---btn:#1A2849;
---btnText:#ffffff;
---inputBg:transparent;
---border:#1A2849;
+:root{
+--bg:#1A2E57;
+--text:#ffffff;
+--card:#1A2E57;
+--border:#ffffff;
+--btn:#ffffff;
+--btnText:#1A2E57;
 }
 
 body{
@@ -49,163 +32,149 @@ color:var(--text);
 .container{
 max-width:420px;
 margin:auto;
-padding:15px;
+padding:14px;
 }
 
+/* HEADER */
+
 .header{
-position:sticky;
-top:0;
-background:var(--bg);
-z-index:100;
 display:flex;
 justify-content:space-between;
 align-items:center;
+border-bottom:1px solid rgba(255,255,255,0.2);
 padding-bottom:10px;
-margin-bottom:18px;
-border-bottom:1px solid rgba(255,255,255,0.15);
-}
-
-.title{
-font-size:24px;
-font-weight:bold;
-}
-
-.app-card{
-border:2px solid var(--border);
-border-radius:22px;
-padding:15px;
-}
-
-.rate-toggle{
-display:flex;
-gap:10px;
 margin-bottom:15px;
 }
 
-.rate-btn{
-flex:1;
-padding:12px;
-border-radius:25px;
-border:2px solid var(--border);
-background:transparent;
-color:var(--text);
+.title{
+font-size:26px;
 font-weight:bold;
-cursor:pointer;
 }
 
-.rate-btn.active{
-background:var(--btn);
-color:var(--btnText);
-}
+/* toggle */
 
 .switch{
 position:relative;
-width:74px;
-height:30px;
+width:70px;
+height:32px;
 }
 
-.switch input{display:none;}
+.switch input{
+display:none;
+}
 
 .slider{
 position:absolute;
+background:white;
+border-radius:30px;
 width:100%;
 height:100%;
-background:var(--btn);
-border-radius:20px;
 display:flex;
 align-items:center;
-font-size:11px;
+padding-left:30px;
+font-size:12px;
 font-weight:bold;
-color:var(--btnText);
-padding-left:28px;
+color:#1A2E57;
 }
 
 .slider:before{
 content:"";
 position:absolute;
-height:22px;
-width:22px;
-left:4px;
-background:var(--bg);
+width:24px;
+height:24px;
+background:#1A2E57;
 border-radius:50%;
-transition:.3s;
+left:4px;
 }
 
-.switch input:checked + .slider:before{
-transform:translateX(40px);
+.card{
+border:2px solid rgba(255,255,255,0.6);
+border-radius:26px;
+padding:18px;
 }
+
+/* reducing flat toggle */
+
+.mode-row{
+display:flex;
+gap:10px;
+margin-bottom:15px;
+}
+
+.mode-btn{
+flex:1;
+padding:12px;
+border-radius:30px;
+border:2px solid rgba(255,255,255,0.7);
+text-align:center;
+font-weight:bold;
+}
+
+.mode-btn.active{
+background:white;
+color:#1A2E57;
+}
+
+/* inputs */
 
 .row{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:12px 0;
+margin:16px 0;
+}
+
+.row label{
+font-size:18px;
 }
 
 .row input{
-width:170px;
-padding:10px;
-border-radius:8px;
-border:2px solid var(--border);
-background:var(--inputBg);
-color:var(--text);
-text-align:right;
+width:180px;
+padding:12px;
+border-radius:12px;
+border:2px solid rgba(255,255,255,0.8);
+background:transparent;
+color:white;
 font-size:16px;
 }
+
+/* buttons */
 
 .btn-row{
 display:flex;
 gap:10px;
-margin-top:10px;
+margin-top:15px;
 }
 
 .btn-row button{
 flex:1;
-padding:14px;
-background:var(--btn);
-color:var(--btnText);
+padding:14px 8px;
+border-radius:14px;
 border:none;
-font-size:12px;
+background:white;
+color:#1A2E57;
 font-weight:bold;
-border-radius:12px;
+font-size:13px;
 }
+
+/* result */
 
 .result{
 text-align:center;
-margin-top:15px;
-font-size:22px;
+font-size:24px;
+margin-top:20px;
 }
 
 .info{
-margin-top:10px;
-line-height:24px;
-font-size:15px;
+margin-top:12px;
+font-size:16px;
+line-height:26px;
 }
 
 .amortization{
-margin-top:15px;
-font-size:16px;
+margin-top:20px;
 }
 
-.ad-container{
-margin:20px auto 40px auto;
-max-width:420px;
-min-height:100px;
-border-radius:16px;
-padding-bottom:60px;
-border:2px dashed var(--border);
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-
-Is this okay or any mistakes in this?
-
-.seo-text{
-position:absolute;
-left:-9999px;
-}
 </style>
 </head>
 
@@ -217,16 +186,16 @@ left:-9999px;
 <div class="title">EMI Calculator Online</div>
 
 <label class="switch">
-<input type="checkbox" id="modeToggle">
-<span class="slider" id="modeText">Dark</span>
+<input type="checkbox">
+<span class="slider">Dark</span>
 </label>
 </div>
 
-<div class="app-card">
+<div class="card">
 
-<div class="rate-toggle">
-<button class="rate-btn active" id="reducingBtn">Reducing Rate</button>
-<button class="rate-btn" id="flatBtn">Flat Rate</button>
+<div class="mode-row">
+<div class="mode-btn active">Reducing Rate</div>
+<div class="mode-btn">Flat Rate</div>
 </div>
 
 <div class="row">
@@ -264,110 +233,84 @@ Enter loan details and click Calculate EMI
 <div id="amortization" class="amortization"></div>
 
 </div>
-
-<div class="ad-container">
-Advertisement Space
-</div>
-
-<div class="seo-text">
-EMI calculator online India loan EMI calculator home loan EMI calculator personal loan EMI calculator amortization calculator
-</div>
-
 </div>
 
 <script>
 
-let rateMode="reducing";
-
-reducingBtn.onclick=function(){
-rateMode="reducing";
-reducingBtn.classList.add("active");
-flatBtn.classList.remove("active");
-}
-
-flatBtn.onclick=function(){
-rateMode="flat";
-flatBtn.classList.add("active");
-reducingBtn.classList.remove("active");
-}
-
-modeToggle.onchange=function(){
-document.body.classList.toggle("light");
-modeText.innerHTML=document.body.classList.contains("light")?"Light":"Dark";
-}
-
-calcBtn.onclick=calculateEMI;
-chartBtn.onclick=showAmortization;
-resetBtn.onclick=resetAll;
+document.getElementById("calcBtn").addEventListener("click", calculateEMI);
+document.getElementById("chartBtn").addEventListener("click", showAmortization);
+document.getElementById("resetBtn").addEventListener("click", resetAll);
 
 function calculateEMI(){
 
-let L=parseFloat(loan.value);
-let R=parseFloat(rate.value);
-let T=parseFloat(tenure.value);
+const loan = parseFloat(document.getElementById("loan").value);
+const rate = parseFloat(document.getElementById("rate").value);
+const tenure = parseFloat(document.getElementById("tenure").value);
 
-if(!L||!R||!T){
-emiResult.innerHTML="Please enter all values";
+if(!loan || !rate || !tenure){
+document.getElementById("emiResult").innerHTML="Please enter all values";
 return;
 }
 
-let emi,totalPay,interestPay,r;
+const r = rate/12/100;
 
-if(rateMode==="reducing"){
-r=R/12/100;
-emi=L*r*Math.pow(1+r,T)/(Math.pow(1+r,T)-1);
-totalPay=emi*T;
-interestPay=totalPay-L;
-}else{
-interestPay=(L*R*T)/1200;
-totalPay=L+interestPay;
-emi=totalPay/T;
-r=R/12/100;
-}
+const emi = loan*r*Math.pow(1+r,tenure)/(Math.pow(1+r,tenure)-1);
 
-let years=T/12;
-let flatRate=(interestPay/(L*years))*100;
+const total = emi*tenure;
+const interest = total-loan;
 
-emiResult.innerHTML="Loan EMI is ₹ "+emi.toFixed(2);
-total.innerHTML=totalPay.toFixed(2);
-interest.innerHTML=interestPay.toFixed(2);
-flatPa.innerHTML=flatRate.toFixed(2);
-pm.innerHTML=(r*100).toFixed(2);
+const years = tenure/12;
+const flatRate = (interest/(loan*years))*100;
 
+document.getElementById("emiResult").innerHTML="Loan EMI is ₹ "+emi.toFixed(2);
+document.getElementById("total").innerHTML=total.toFixed(2);
+document.getElementById("interest").innerHTML=interest.toFixed(2);
+document.getElementById("flatPa").innerHTML=flatRate.toFixed(2);
+document.getElementById("pm").innerHTML=(r*100).toFixed(2);
 }
 
 function showAmortization(){
 
 calculateEMI();
 
-let L=parseFloat(loan.value);
-let R=parseFloat(rate.value);
-let T=parseFloat(tenure.value);
+const loanVal=parseFloat(document.getElementById("loan").value);
+const rateVal=parseFloat(document.getElementById("rate").value);
+const tenureVal=parseFloat(document.getElementById("tenure").value);
 
-let r=R/12/100;
-let emi;
+if(!loanVal || !rateVal || !tenureVal) return;
 
-if(rateMode==="reducing"){
-emi=L*r*Math.pow(1+r,T)/(Math.pow(1+r,T)-1);
-}else{
-let interestPay=(L*R*T)/1200;
-emi=(L+interestPay)/T;
-}
+const r=rateVal/12/100;
+const emi=loanVal*r*Math.pow(1+r,tenureVal)/(Math.pow(1+r,tenureVal)-1);
 
-let balance=L;
-let html="<b style='font-size:18px'>Amortization Schedule</b><br><br>";
+let balance=loanVal;
 
-for(let i=1;i<=T;i++){
+let html="<b>Amortization Schedule</b><br><br>";
 
-let interestVal=rateMode==="reducing"?balance*r:(L*R/1200);
+html+=`
+<div style="display:flex;justify-content:space-between;font-weight:bold">
+<span>Month</span>
+<span>EMI</span>
+<span>Interest</span>
+<span>Principal</span>
+</div>
+`;
+
+for(let i=1;i<=tenureVal;i++){
+
+let interestVal=balance*r;
 let principal=emi-interestVal;
-balance-=principal;
+balance=balance-principal;
 
-html+=`Month ${i} : EMI ₹${emi.toFixed(0)} | Interest ₹${interestVal.toFixed(0)} | Principal ₹${principal.toFixed(0)}<br>`;
+html+=`
+<div style="display:flex;justify-content:space-between;padding:6px 0">
+<span>${i}</span>
+<span>₹${emi.toFixed(0)}</span>
+<span>₹${interestVal.toFixed(0)}</span>
+<span>₹${principal.toFixed(0)}</span>
+</div>`;
 }
 
-amortization.innerHTML=html;
-
+document.getElementById("amortization").innerHTML=html;
 }
 
 function resetAll(){
@@ -377,12 +320,13 @@ rate.value="";
 tenure.value="";
 
 emiResult.innerHTML="Enter loan details and click Calculate EMI";
+
 total.innerHTML="0";
 interest.innerHTML="0";
 flatPa.innerHTML="0";
 pm.innerHTML="0";
-amortization.innerHTML="";
 
+amortization.innerHTML="";
 }
 
 </script>
