@@ -15,6 +15,7 @@
 --btnText:#1A2849;
 --inputBg:#1A2849;
 --border:#ffffff;
+--emiColor:#FFD700; /* yellow for dark */
 }
 
 body.light{
@@ -24,6 +25,7 @@ body.light{
 --btnText:#ffffff;
 --inputBg:transparent;
 --border:#1A2849;
+--emiColor:#00AEEF; /* sky blue for light */
 }
 
 body{
@@ -171,6 +173,11 @@ margin-top:15px;
 font-size:22px;
 }
 
+.result.highlight{
+color:var(--emiColor);
+font-weight:bold;
+}
+
 .info{
 margin-top:10px;
 line-height:24px;
@@ -295,6 +302,7 @@ const rate = parseFloat(rateEl().value);
 const tenure = parseFloat(tenureEl().value);
 
 if(!loan || !rate || !tenure){
+emiResult.classList.remove("highlight");
 emiResult.innerHTML="Please enter all values";
 return;
 }
@@ -329,7 +337,9 @@ pm.innerHTML=(rate/12).toFixed(2);
 
 }
 
+emiResult.classList.add("highlight");
 emiResult.innerHTML="Loan EMI is ₹ "+emi.toFixed(2);
+
 totalEl().innerHTML=total.toFixed(2);
 interestEl().innerHTML=interest.toFixed(2);
 flatPa.innerHTML=flatRate.toFixed(2);
@@ -387,6 +397,7 @@ function resetAll(){
 loanEl().value="";
 rateEl().value="";
 tenureEl().value="";
+emiResult.classList.remove("highlight");
 emiResult.innerHTML="Enter loan details and click Calculate EMI";
 totalEl().innerHTML="0";
 interestEl().innerHTML="0";
