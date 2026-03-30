@@ -177,10 +177,25 @@ line-height:24px;
 font-size:15px;
 }
 
+/* AMORTIZATION */
 .amortization{
 margin-top:15px;
 font-size:14px;
 line-height:22px;
+max-height:320px;
+overflow-y:auto;
+}
+
+.amortization-header{
+display:flex;
+justify-content:space-between;
+padding:6px 0;
+font-weight:bold;
+border-bottom:1px solid rgba(255,255,255,0.25);
+margin-bottom:6px;
+position:sticky;
+top:0;
+background:var(--bg);
 }
 </style>
 </head>
@@ -338,7 +353,17 @@ const r=rateVal/12/100;
 const emi=loanVal*r*Math.pow(1+r,tenureVal)/(Math.pow(1+r,tenureVal)-1);
 
 let balance=loanVal;
+
 let html="<b>Amortization Schedule</b><br><br>";
+
+html+=`
+<div class="amortization-header">
+<span>Month</span>
+<span>EMI</span>
+<span>Interest</span>
+<span>Principal</span>
+</div>
+`;
 
 for(let i=1;i<=tenureVal;i++){
 
