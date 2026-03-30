@@ -11,15 +11,46 @@
 
 <meta name="description" content="Free EMI Calculator Online 2026 India. Calculate Loan EMI, Personal Loan EMI, Home Loan EMI, Car Loan EMI, Monthly Installment and Amortisation schedule instantly.">
 
-<style>
+<meta name="keywords" content="
+EMI Calculator online,
+Loan EMI Calculator 2026,
+Personal Loan EMI Calculator,
+Home Loan EMI Calculator,
+Car Loan EMI Calculator,
+Monthly Installment Calculator,
+Amortisation calculator,
+loan emi calculator india,
+emi calculator free,
+bank emi calculator
+">
 
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ramesh Navagani">
+
+<link rel="canonical" href="https://rameshnavagani.github.io/Get-EMI/">
+
+<meta property="og:title" content="EMI Calculator Online India 2026">
+<meta property="og:description" content="Calculate Loan EMI, Home Loan EMI, Personal Loan EMI and Car Loan EMI instantly with amortisation schedule.">
+<meta property="og:url" content="https://rameshnavagani.github.io/Get-EMI/">
+<meta property="og:type" content="website">
+
+<style>
 :root{
---bg:#1A2E57;
+--bg:#1A2849;
 --text:#ffffff;
---card:#1A2E57;
---border:#ffffff;
 --btn:#ffffff;
---btnText:#1A2E57;
+--btnText:#1A2849;
+--inputBg:#1A2849;
+--border:#ffffff;
+}
+
+body.light{
+--bg:#ffffff;
+--text:#1A2849;
+--btn:#1A2849;
+--btnText:#ffffff;
+--inputBg:transparent;
+--border:#1A2849;
 }
 
 body{
@@ -31,150 +62,131 @@ color:var(--text);
 
 .container{
 max-width:420px;
+width:100%;
 margin:auto;
-padding:14px;
+padding:15px;
+box-sizing:border-box;
 }
-
-/* HEADER */
 
 .header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-border-bottom:1px solid rgba(255,255,255,0.2);
 padding-bottom:10px;
-margin-bottom:15px;
+margin-bottom:18px;
+border-bottom:1px solid rgba(255,255,255,0.15);
 }
 
 .title{
-font-size:26px;
+font-size:24px;
 font-weight:bold;
 }
-
-/* toggle */
 
 .switch{
 position:relative;
-width:70px;
-height:32px;
+width:74px;
+height:30px;
 }
 
-.switch input{
-display:none;
-}
+.switch input{ display:none; }
 
 .slider{
 position:absolute;
-background:white;
-border-radius:30px;
 width:100%;
 height:100%;
+background:var(--btn);
+border-radius:20px;
 display:flex;
 align-items:center;
-padding-left:30px;
-font-size:12px;
+font-size:11px;
 font-weight:bold;
-color:#1A2E57;
+color:var(--btnText);
+padding-left:28px;
+box-sizing:border-box;
 }
 
 .slider:before{
 content:"";
 position:absolute;
-width:24px;
-height:24px;
-background:#1A2E57;
-border-radius:50%;
+height:22px;
+width:22px;
 left:4px;
+background:var(--bg);
+border-radius:50%;
+transition:.3s;
 }
 
-.card{
-border:2px solid rgba(255,255,255,0.6);
-border-radius:26px;
-padding:18px;
+.switch input:checked + .slider{
+padding-left:8px;
+justify-content:flex-start;
 }
 
-/* reducing flat toggle */
-
-.mode-row{
-display:flex;
-gap:10px;
-margin-bottom:15px;
+.switch input:checked + .slider:before{
+transform:translateX(40px);
 }
-
-.mode-btn{
-flex:1;
-padding:12px;
-border-radius:30px;
-border:2px solid rgba(255,255,255,0.7);
-text-align:center;
-font-weight:bold;
-}
-
-.mode-btn.active{
-background:white;
-color:#1A2E57;
-}
-
-/* inputs */
 
 .row{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin:16px 0;
-}
-
-.row label{
-font-size:18px;
+padding:12px 0;
 }
 
 .row input{
-width:180px;
-padding:12px;
-border-radius:12px;
-border:2px solid rgba(255,255,255,0.8);
-background:transparent;
-color:white;
+width:170px;
+padding:10px;
+border-radius:6px;
+border:2px solid var(--border);
+background:var(--inputBg);
+color:var(--text);
+text-align:right;
 font-size:16px;
 }
-
-/* buttons */
 
 .btn-row{
 display:flex;
 gap:10px;
-margin-top:15px;
+margin-top:10px;
 }
 
 .btn-row button{
 flex:1;
-padding:14px 8px;
-border-radius:14px;
+padding:14px;
+background:var(--btn);
+color:var(--btnText);
 border:none;
-background:white;
-color:#1A2E57;
+font-size:12px;
 font-weight:bold;
-font-size:13px;
+border-radius:10px;
+cursor:pointer;
 }
-
-/* result */
 
 .result{
 text-align:center;
-font-size:24px;
-margin-top:20px;
+margin-top:15px;
+font-size:22px;
 }
 
 .info{
-margin-top:12px;
-font-size:16px;
-line-height:26px;
+margin-top:10px;
+line-height:24px;
+font-size:15px;
 }
 
 .amortization{
-margin-top:20px;
+margin-top:15px;
+font-size:14px;
+line-height:22px;
 }
 
+.seo-text{
+position:absolute;
+left:-9999px;
+top:auto;
+width:1px;
+height:1px;
+overflow:hidden;
+}
 </style>
 </head>
 
@@ -186,16 +198,9 @@ margin-top:20px;
 <div class="title">EMI Calculator Online</div>
 
 <label class="switch">
-<input type="checkbox">
-<span class="slider">Dark</span>
+<input type="checkbox" id="modeToggle">
+<span class="slider" id="modeText">Dark</span>
 </label>
-</div>
-
-<div class="card">
-
-<div class="mode-row">
-<div class="mode-btn active">Reducing Rate</div>
-<div class="mode-btn">Flat Rate</div>
 </div>
 
 <div class="row">
@@ -232,14 +237,30 @@ Enter loan details and click Calculate EMI
 
 <div id="amortization" class="amortization"></div>
 
+<div class="seo-text">
+<p>This EMI Calculator Online helps you calculate Loan EMI, Personal Loan EMI, Home Loan EMI and Car Loan EMI instantly. 
+Use this Monthly Installment Calculator to generate full amortisation schedule and interest breakdown. 
+This Loan EMI Calculator 2026 India works for all banks and financial institutions.</p>
 </div>
+
 </div>
 
 <script>
 
+document.addEventListener("DOMContentLoaded", function(){
+
 document.getElementById("calcBtn").addEventListener("click", calculateEMI);
 document.getElementById("chartBtn").addEventListener("click", showAmortization);
 document.getElementById("resetBtn").addEventListener("click", resetAll);
+document.getElementById("modeToggle").addEventListener("change", toggleMode);
+
+});
+
+function toggleMode(){
+document.body.classList.toggle("light");
+document.getElementById("modeText").innerHTML =
+document.body.classList.contains("light") ? "Light" : "Dark";
+}
 
 function calculateEMI(){
 
@@ -287,7 +308,14 @@ let balance=loanVal;
 let html="<b>Amortization Schedule</b><br><br>";
 
 html+=`
-<div style="display:flex;justify-content:space-between;font-weight:bold">
+<div style="
+display:flex;
+justify-content:space-between;
+padding:8px 0;
+font-weight:bold;
+border-bottom:2px solid rgba(255,255,255,.4);
+margin-bottom:5px
+">
 <span>Month</span>
 <span>EMI</span>
 <span>Interest</span>
@@ -302,7 +330,12 @@ let principal=emi-interestVal;
 balance=balance-principal;
 
 html+=`
-<div style="display:flex;justify-content:space-between;padding:6px 0">
+<div style="
+display:flex;
+justify-content:space-between;
+padding:6px 0;
+border-bottom:1px solid rgba(255,255,255,.2)
+">
 <span>${i}</span>
 <span>₹${emi.toFixed(0)}</span>
 <span>₹${interestVal.toFixed(0)}</span>
@@ -315,18 +348,19 @@ document.getElementById("amortization").innerHTML=html;
 
 function resetAll(){
 
-loan.value="";
-rate.value="";
-tenure.value="";
+document.getElementById("loan").value="";
+document.getElementById("rate").value="";
+document.getElementById("tenure").value="";
 
-emiResult.innerHTML="Enter loan details and click Calculate EMI";
+document.getElementById("emiResult").innerHTML=
+"Enter loan details and click Calculate EMI";
 
-total.innerHTML="0";
-interest.innerHTML="0";
-flatPa.innerHTML="0";
-pm.innerHTML="0";
+document.getElementById("total").innerHTML="0";
+document.getElementById("interest").innerHTML="0";
+document.getElementById("flatPa").innerHTML="0";
+document.getElementById("pm").innerHTML="0";
+document.getElementById("amortization").innerHTML="";
 
-amortization.innerHTML="";
 }
 
 </script>
