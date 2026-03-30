@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta name="google-site-verification" content="41q-fGa3V0AIcuARLMLExtk_qI2PrbtaT_oHS7y11Mw" />
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -177,11 +179,14 @@ font-size:14px;
 line-height:22px;
 }
 
+/* hidden but SEO readable */
 .seo-text{
-margin-top:25px;
-font-size:14px;
-line-height:22px;
-opacity:.9;
+position:absolute;
+left:-9999px;
+top:auto;
+width:1px;
+height:1px;
+overflow:hidden;
 }
 </style>
 </head>
@@ -190,10 +195,8 @@ opacity:.9;
 
 <div class="container">
 
-<h1>EMI Calculator Online</h1>
-
 <div class="header">
-<div class="title">EMI calculator</div>
+<div class="title">EMI Calculator Online</div>
 
 <label class="switch">
 <input type="checkbox" id="modeToggle">
@@ -235,6 +238,7 @@ Enter loan details and click Calculate EMI
 
 <div id="amortization" class="amortization"></div>
 
+<!-- SEO content (hidden) -->
 <div class="seo-text">
 <p>This EMI Calculator Online helps you calculate Loan EMI, Personal Loan EMI, Home Loan EMI and Car Loan EMI instantly. 
 Use this Monthly Installment Calculator to generate full amortisation schedule and interest breakdown. 
