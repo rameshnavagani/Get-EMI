@@ -179,7 +179,6 @@ font-size:14px;
 line-height:22px;
 }
 
-/* hidden but SEO readable */
 .seo-text{
 position:absolute;
 left:-9999px;
@@ -238,7 +237,6 @@ Enter loan details and click Calculate EMI
 
 <div id="amortization" class="amortization"></div>
 
-<!-- SEO content (hidden) -->
 <div class="seo-text">
 <p>This EMI Calculator Online helps you calculate Loan EMI, Personal Loan EMI, Home Loan EMI and Car Loan EMI instantly. 
 Use this Monthly Installment Calculator to generate full amortisation schedule and interest breakdown. 
@@ -309,6 +307,22 @@ let balance=loanVal;
 
 let html="<b>Amortization Schedule</b><br><br>";
 
+html+=`
+<div style="
+display:flex;
+justify-content:space-between;
+padding:8px 0;
+font-weight:bold;
+border-bottom:2px solid rgba(255,255,255,.4);
+margin-bottom:5px
+">
+<span>Month</span>
+<span>EMI</span>
+<span>Interest</span>
+<span>Principal</span>
+</div>
+`;
+
 for(let i=1;i<=tenureVal;i++){
 
 let interestVal=balance*r;
@@ -316,7 +330,12 @@ let principal=emi-interestVal;
 balance=balance-principal;
 
 html+=`
-<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.2)">
+<div style="
+display:flex;
+justify-content:space-between;
+padding:6px 0;
+border-bottom:1px solid rgba(255,255,255,.2)
+">
 <span>${i}</span>
 <span>₹${emi.toFixed(0)}</span>
 <span>₹${interestVal.toFixed(0)}</span>
