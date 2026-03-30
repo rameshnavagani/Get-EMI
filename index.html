@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta name="google-site-verification" content="41q-fGa3V0AIcuARLMLExtk_qI2PrbtaT_oHS7y11Mw" />
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -11,26 +9,14 @@
 
 <meta name="description" content="Free EMI Calculator Online 2026 India. Calculate Loan EMI, Personal Loan EMI, Home Loan EMI, Car Loan EMI, Monthly Installment and Amortisation schedule instantly.">
 
-<meta name="keywords" content="
-EMI Calculator online,
-Loan EMI Calculator 2026,
-Personal Loan EMI Calculator,
-Home Loan EMI Calculator,
-Car Loan EMI Calculator,
-Monthly Installment Calculator,
-Amortisation calculator,
-loan emi calculator india,
-emi calculator free,
-bank emi calculator
-">
+<meta name="keywords" content="EMI Calculator online, Loan EMI Calculator 2026, Personal Loan EMI Calculator, Home Loan EMI Calculator, Car Loan EMI Calculator, Monthly Installment Calculator, Amortisation calculator, loan emi calculator india, emi calculator free, bank emi calculator">
 
 <meta name="robots" content="index, follow">
 <meta name="author" content="Ramesh Navagani">
-
 <link rel="canonical" href="https://rameshnavagani.github.io/Get-EMI/">
 
 <meta property="og:title" content="EMI Calculator Online India 2026">
-<meta property="og:description" content="Calculate Loan EMI, Home Loan EMI, Personal Loan EMI and Car Loan EMI instantly with amortisation schedule.">
+<meta property="og:description" content="Calculate Loan EMI instantly with amortisation schedule.">
 <meta property="og:url" content="https://rameshnavagani.github.io/Get-EMI/">
 <meta property="og:type" content="website">
 
@@ -62,10 +48,8 @@ color:var(--text);
 
 .container{
 max-width:420px;
-width:100%;
 margin:auto;
 padding:15px;
-box-sizing:border-box;
 }
 
 .header{
@@ -88,20 +72,20 @@ font-weight:bold;
 
 .app-card{
 border:2px solid var(--border);
-border-radius:20px;
+border-radius:22px;
 padding:15px;
 }
 
 .rate-toggle{
 display:flex;
 gap:10px;
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
 .rate-btn{
 flex:1;
-padding:10px;
-border-radius:20px;
+padding:12px;
+border-radius:25px;
 border:2px solid var(--border);
 background:transparent;
 color:var(--text);
@@ -120,7 +104,7 @@ width:74px;
 height:30px;
 }
 
-.switch input{ display:none; }
+.switch input{display:none;}
 
 .slider{
 position:absolute;
@@ -134,7 +118,6 @@ font-size:11px;
 font-weight:bold;
 color:var(--btnText);
 padding-left:28px;
-box-sizing:border-box;
 }
 
 .slider:before{
@@ -146,11 +129,6 @@ left:4px;
 background:var(--bg);
 border-radius:50%;
 transition:.3s;
-}
-
-.switch input:checked + .slider{
-padding-left:8px;
-justify-content:flex-start;
 }
 
 .switch input:checked + .slider:before{
@@ -167,7 +145,7 @@ padding:12px 0;
 .row input{
 width:170px;
 padding:10px;
-border-radius:6px;
+border-radius:8px;
 border:2px solid var(--border);
 background:var(--inputBg);
 color:var(--text);
@@ -189,8 +167,7 @@ color:var(--btnText);
 border:none;
 font-size:12px;
 font-weight:bold;
-border-radius:10px;
-cursor:pointer;
+border-radius:12px;
 }
 
 .result{
@@ -208,16 +185,22 @@ font-size:15px;
 .amortization{
 margin-top:15px;
 font-size:16px;
-line-height:22px;
+}
+
+.ad-container{
+margin:20px auto;
+max-width:420px;
+min-height:120px;
+border-radius:18px;
+border:2px dashed var(--border);
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .seo-text{
 position:absolute;
 left:-9999px;
-top:auto;
-width:1px;
-height:1px;
-overflow:hidden;
 }
 </style>
 </head>
@@ -278,10 +261,12 @@ Enter loan details and click Calculate EMI
 
 </div>
 
+<div class="ad-container">
+Advertisement Space
+</div>
+
 <div class="seo-text">
-<p>This EMI Calculator Online helps you calculate Loan EMI, Personal Loan EMI, Home Loan EMI and Car Loan EMI instantly. 
-Use this Monthly Installment Calculator to generate full amortisation schedule and interest breakdown. 
-This Loan EMI Calculator 2026 India works for all banks and financial institutions.</p>
+EMI calculator online India loan EMI calculator home loan EMI calculator personal loan EMI calculator amortization calculator
 </div>
 
 </div>
@@ -290,134 +275,110 @@ This Loan EMI Calculator 2026 India works for all banks and financial institutio
 
 let rateMode="reducing";
 
-document.addEventListener("DOMContentLoaded", function(){
-
-document.getElementById("calcBtn").addEventListener("click", calculateEMI);
-document.getElementById("chartBtn").addEventListener("click", showAmortization);
-document.getElementById("resetBtn").addEventListener("click", resetAll);
-document.getElementById("modeToggle").addEventListener("change", toggleMode);
-
-document.getElementById("reducingBtn").addEventListener("click",()=>{
+reducingBtn.onclick=function(){
 rateMode="reducing";
-document.getElementById("reducingBtn").classList.add("active");
-document.getElementById("flatBtn").classList.remove("active");
-});
-
-document.getElementById("flatBtn").addEventListener("click",()=>{
-rateMode="flat";
-document.getElementById("flatBtn").classList.add("active");
-document.getElementById("reducingBtn").classList.remove("active");
-});
-
-});
-
-function toggleMode(){
-document.body.classList.toggle("light");
-document.getElementById("modeText").innerHTML =
-document.body.classList.contains("light") ? "Light" : "Dark";
+reducingBtn.classList.add("active");
+flatBtn.classList.remove("active");
 }
+
+flatBtn.onclick=function(){
+rateMode="flat";
+flatBtn.classList.add("active");
+reducingBtn.classList.remove("active");
+}
+
+modeToggle.onchange=function(){
+document.body.classList.toggle("light");
+modeText.innerHTML=document.body.classList.contains("light")?"Light":"Dark";
+}
+
+calcBtn.onclick=calculateEMI;
+chartBtn.onclick=showAmortization;
+resetBtn.onclick=resetAll;
 
 function calculateEMI(){
 
-const loan = parseFloat(document.getElementById("loan").value);
-const rate = parseFloat(document.getElementById("rate").value);
-const tenure = parseFloat(document.getElementById("tenure").value);
+let L=parseFloat(loan.value);
+let R=parseFloat(rate.value);
+let T=parseFloat(tenure.value);
 
-if(!loan || !rate || !tenure){
-document.getElementById("emiResult").innerHTML="Please enter all values";
+if(!L||!R||!T){
+emiResult.innerHTML="Please enter all values";
 return;
 }
 
-let emi,total,interest,r;
+let emi,totalPay,interestPay,r;
 
 if(rateMode==="reducing"){
-r = rate/12/100;
-emi = loan*r*Math.pow(1+r,tenure)/(Math.pow(1+r,tenure)-1);
-total = emi*tenure;
-interest = total-loan;
+r=R/12/100;
+emi=L*r*Math.pow(1+r,T)/(Math.pow(1+r,T)-1);
+totalPay=emi*T;
+interestPay=totalPay-L;
 }else{
-interest = (loan*rate*tenure)/1200;
-total = loan+interest;
-emi = total/tenure;
-r = rate/12/100;
+interestPay=(L*R*T)/1200;
+totalPay=L+interestPay;
+emi=totalPay/T;
+r=R/12/100;
 }
 
-const years = tenure/12;
-const flatRate = (interest/(loan*years))*100;
+let years=T/12;
+let flatRate=(interestPay/(L*years))*100;
 
-document.getElementById("emiResult").innerHTML="Loan EMI is ₹ "+emi.toFixed(2);
-document.getElementById("total").innerHTML=total.toFixed(2);
-document.getElementById("interest").innerHTML=interest.toFixed(2);
-document.getElementById("flatPa").innerHTML=flatRate.toFixed(2);
-document.getElementById("pm").innerHTML=(r*100).toFixed(2);
+emiResult.innerHTML="Loan EMI is ₹ "+emi.toFixed(2);
+total.innerHTML=totalPay.toFixed(2);
+interest.innerHTML=interestPay.toFixed(2);
+flatPa.innerHTML=flatRate.toFixed(2);
+pm.innerHTML=(r*100).toFixed(2);
+
 }
 
 function showAmortization(){
 
 calculateEMI();
 
-const loanVal=parseFloat(document.getElementById("loan").value);
-const rateVal=parseFloat(document.getElementById("rate").value);
-const tenureVal=parseFloat(document.getElementById("tenure").value);
+let L=parseFloat(loan.value);
+let R=parseFloat(rate.value);
+let T=parseFloat(tenure.value);
 
-if(!loanVal || !rateVal || !tenureVal) return;
-
-const r=rateVal/12/100;
-
+let r=R/12/100;
 let emi;
 
 if(rateMode==="reducing"){
-emi=loanVal*r*Math.pow(1+r,tenureVal)/(Math.pow(1+r,tenureVal)-1);
+emi=L*r*Math.pow(1+r,T)/(Math.pow(1+r,T)-1);
 }else{
-const interest = (loanVal*rateVal*tenureVal)/1200;
-const total = loanVal+interest;
-emi = total/tenureVal;
+let interestPay=(L*R*T)/1200;
+emi=(L+interestPay)/T;
 }
 
-let balance=loanVal;
-
+let balance=L;
 let html="<b style='font-size:18px'>Amortization Schedule</b><br><br>";
 
-html+=`
-<div style="display:flex;justify-content:space-between;padding:8px 0;font-weight:bold;border-bottom:2px solid rgba(255,255,255,.4);margin-bottom:5px">
-<span>Month</span>
-<span>EMI</span>
-<span>Interest</span>
-<span>Principal</span>
-</div>
-`;
+for(let i=1;i<=T;i++){
 
-for(let i=1;i<=tenureVal;i++){
-
-let interestVal= rateMode==="reducing" ? balance*r : (loanVal*rateVal/1200);
+let interestVal=rateMode==="reducing"?balance*r:(L*R/1200);
 let principal=emi-interestVal;
-balance=balance-principal;
+balance-=principal;
 
-html+=`
-<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.2)">
-<span>${i}</span>
-<span>₹${emi.toFixed(0)}</span>
-<span>₹${interestVal.toFixed(0)}</span>
-<span>₹${principal.toFixed(0)}</span>
-</div>`;
+html+=`Month ${i} : EMI ₹${emi.toFixed(0)} | Interest ₹${interestVal.toFixed(0)} | Principal ₹${principal.toFixed(0)}<br>`;
 }
 
-document.getElementById("amortization").innerHTML=html;
+amortization.innerHTML=html;
+
 }
 
 function resetAll(){
 
-document.getElementById("loan").value="";
-document.getElementById("rate").value="";
-document.getElementById("tenure").value="";
+loan.value="";
+rate.value="";
+tenure.value="";
 
-document.getElementById("emiResult").innerHTML="Enter loan details and click Calculate EMI";
+emiResult.innerHTML="Enter loan details and click Calculate EMI";
+total.innerHTML="0";
+interest.innerHTML="0";
+flatPa.innerHTML="0";
+pm.innerHTML="0";
+amortization.innerHTML="";
 
-document.getElementById("total").innerHTML="0";
-document.getElementById("interest").innerHTML="0";
-document.getElementById("flatPa").innerHTML="0";
-document.getElementById("pm").innerHTML="0";
-document.getElementById("amortization").innerHTML="";
 }
 
 </script>
