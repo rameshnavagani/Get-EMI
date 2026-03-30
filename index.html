@@ -9,31 +9,6 @@
 
 <title>EMI Calculator Online | Loan EMI Calculator 2026 India | Home Car Personal Loan EMI</title>
 
-<meta name="description" content="Free EMI Calculator Online 2026 India. Calculate Loan EMI, Personal Loan EMI, Home Loan EMI, Car Loan EMI, Monthly Installment and Amortisation schedule instantly.">
-
-<meta name="keywords" content="
-EMI Calculator online,
-Loan EMI Calculator 2026,
-Personal Loan EMI Calculator,
-Home Loan EMI Calculator,
-Car Loan EMI Calculator,
-Monthly Installment Calculator,
-Amortisation calculator,
-loan emi calculator india,
-emi calculator free,
-bank emi calculator
-">
-
-<meta name="robots" content="index, follow">
-<meta name="author" content="Ramesh Navagani">
-
-<link rel="canonical" href="https://rameshnavagani.github.io/Get-EMI/">
-
-<meta property="og:title" content="EMI Calculator Online India 2026">
-<meta property="og:description" content="Calculate Loan EMI, Home Loan EMI, Personal Loan EMI and Car Loan EMI instantly with amortisation schedule.">
-<meta property="og:url" content="https://rameshnavagani.github.io/Get-EMI/">
-<meta property="og:type" content="website">
-
 <style>
 :root{
 --bg:#1A2849;
@@ -60,20 +35,27 @@ background:var(--bg);
 color:var(--text);
 }
 
-.container{
-max-width:420px;
-width:100%;
-margin:auto;
+/* BOARDER COVER */
+.board{
+max-width:450px;
+margin:15px auto;
+border:3px solid var(--border);
+border-radius:14px;
 padding:15px;
 box-sizing:border-box;
 }
 
+/* FIXED HEADER */
 .header{
+position:sticky;
+top:0;
+background:var(--bg);
+z-index:100;
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding-bottom:10px;
-margin-bottom:18px;
+margin-bottom:10px;
 border-bottom:1px solid rgba(255,255,255,0.15);
 }
 
@@ -123,6 +105,29 @@ justify-content:flex-start;
 
 .switch input:checked + .slider:before{
 transform:translateX(40px);
+}
+
+/* RATE MODE BUTTONS */
+.rate-toggle{
+display:flex;
+gap:10px;
+margin:10px 0 15px 0;
+}
+
+.rate-toggle button{
+flex:1;
+padding:10px;
+border-radius:10px;
+border:2px solid var(--border);
+background:transparent;
+color:var(--text);
+font-weight:bold;
+cursor:pointer;
+}
+
+.rate-toggle button.active{
+background:var(--btn);
+color:var(--btnText);
 }
 
 .row{
@@ -178,21 +183,12 @@ margin-top:15px;
 font-size:14px;
 line-height:22px;
 }
-
-.seo-text{
-position:absolute;
-left:-9999px;
-top:auto;
-width:1px;
-height:1px;
-overflow:hidden;
-}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="board">
 
 <div class="header">
 <div class="title">EMI Calculator Online</div>
@@ -201,6 +197,12 @@ overflow:hidden;
 <input type="checkbox" id="modeToggle">
 <span class="slider" id="modeText">Dark</span>
 </label>
+</div>
+
+<!-- NEW RATE TOGGLE -->
+<div class="rate-toggle">
+<button id="reducingBtn" class="active">Reducing Rate</button>
+<button id="flatBtn">Flat Rate</button>
 </div>
 
 <div class="row">
@@ -237,15 +239,11 @@ Enter loan details and click Calculate EMI
 
 <div id="amortization" class="amortization"></div>
 
-<div class="seo-text">
-<p>This EMI Calculator Online helps you calculate Loan EMI, Personal Loan EMI, Home Loan EMI and Car Loan EMI instantly. 
-Use this Monthly Installment Calculator to generate full amortisation schedule and interest breakdown. 
-This Loan EMI Calculator 2026 India works for all banks and financial institutions.</p>
-</div>
-
 </div>
 
 <script>
+
+let rateMode="reducing";
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -254,7 +252,22 @@ document.getElementById("chartBtn").addEventListener("click", showAmortization);
 document.getElementById("resetBtn").addEventListener("click", resetAll);
 document.getElementById("modeToggle").addEventListener("change", toggleMode);
 
+document.getElementById("reducingBtn").onclick=()=>{
+rateMode="reducing";
+setActive()
+}
+
+document.getElementById("flatBtn").onclick=()=>{
+rateMode="flat";
+setActive()
+}
+
 });
+
+function setActive(){
+document.getElementById("reducingBtn").classList.toggle("active",rateMode==="reducing");
+document.getElementById("flatBtn").classList.toggle("active",rateMode==="flat");
+}
 
 function toggleMode(){
 document.body.classList.toggle("light");
@@ -273,32 +286,56 @@ document.getElementById("emiResult").innerHTML="Please enter all values";
 return;
 }
 
+let emi,total,interest,flatRate;
+
+if(rateMode==="reducing"){
+
 const r = rate/12/100;
 
-const emi = loan*r*Math.pow(1+r,tenure)/(Math.pow(1+r,tenure)-1);
+emi = loan*r*Math.pow(1+r,tenure)/(Math.pow(1+r,tenure)-1);
 
-const total = emi*tenure;
-const interest = total-loan;
+total = emi*tenure;
+interest = total-loan;
 
-const years = tenure/12;
-const flatRate = (interest/(loan*years))*100;
+flatRate = (interest/(loan*(tenure/12)))*100;
+
+document.getElementById("pm").innerHTML=(r*100).toFixed(2);
+
+}
+else{
+
+const interestTotal = loan*(rate/100)*(tenure/12);
+
+total = loan+interestTotal;
+emi = total/tenure;
+interest = interestTotal;
+
+flatRate = rate;
+
+document.getElementById("pm").innerHTML=(rate/12).toFixed(2);
+
+}
 
 document.getElementById("emiResult").innerHTML="Loan EMI is ₹ "+emi.toFixed(2);
 document.getElementById("total").innerHTML=total.toFixed(2);
 document.getElementById("interest").innerHTML=interest.toFixed(2);
 document.getElementById("flatPa").innerHTML=flatRate.toFixed(2);
-document.getElementById("pm").innerHTML=(r*100).toFixed(2);
+
 }
 
 function showAmortization(){
+
+if(rateMode==="flat"){
+document.getElementById("amortization").innerHTML=
+"Amortization available only for reducing rate";
+return;
+}
 
 calculateEMI();
 
 const loanVal=parseFloat(document.getElementById("loan").value);
 const rateVal=parseFloat(document.getElementById("rate").value);
 const tenureVal=parseFloat(document.getElementById("tenure").value);
-
-if(!loanVal || !rateVal || !tenureVal) return;
 
 const r=rateVal/12/100;
 const emi=loanVal*r*Math.pow(1+r,tenureVal)/(Math.pow(1+r,tenureVal)-1);
@@ -307,22 +344,6 @@ let balance=loanVal;
 
 let html="<b>Amortization Schedule</b><br><br>";
 
-html+=`
-<div style="
-display:flex;
-justify-content:space-between;
-padding:8px 0;
-font-weight:bold;
-border-bottom:2px solid rgba(255,255,255,.4);
-margin-bottom:5px
-">
-<span>Month</span>
-<span>EMI</span>
-<span>Interest</span>
-<span>Principal</span>
-</div>
-`;
-
 for(let i=1;i<=tenureVal;i++){
 
 let interestVal=balance*r;
@@ -330,12 +351,7 @@ let principal=emi-interestVal;
 balance=balance-principal;
 
 html+=`
-<div style="
-display:flex;
-justify-content:space-between;
-padding:6px 0;
-border-bottom:1px solid rgba(255,255,255,.2)
-">
+<div style="display:flex;justify-content:space-between;padding:6px 0;">
 <span>${i}</span>
 <span>₹${emi.toFixed(0)}</span>
 <span>₹${interestVal.toFixed(0)}</span>
@@ -360,7 +376,6 @@ document.getElementById("interest").innerHTML="0";
 document.getElementById("flatPa").innerHTML="0";
 document.getElementById("pm").innerHTML="0";
 document.getElementById("amortization").innerHTML="";
-
 }
 
 </script>
